@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <title>JobPilot — Your career, in motion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="demoNote" class="note hide">Demo mode: sample jobs and simulated applications. Nothing is sent to a real employer.</div>
+
+<section id="p1" class="auth-shell">
+  <div class="auth-art">
+    <div class="brand brand-light"><span class="brand-mark">J</span><span>jobpilot</span></div>
+    <div class="art-copy">
+      <span class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</span>
+      <h1>Make your next<br><em>move</em> your best one.</h1>
+      <p>Discover opportunities that fit your skills, keep every application organised, and move forward with confidence.</p>
+      <div class="art-points"><span>✦ Smart job matching</span><span>✦ One clear application hub</span></div>
+    </div>
+    <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+    <div class="art-foot">A little more focus. A lot more possibility.</div>
+  </div>
+  <div class="auth-panel">
+    <div class="auth-brand brand"><span class="brand-mark">J</span><span>jobpilot</span></div>
+    <div class="auth-card">
+      <span class="eyebrow">WELCOME TO JOBPILOT</span>
+      <h2>Good to have you here.</h2>
+      <p class="subtle">Sign in to pick up where your career journey left off.</p>
+      <label for="em">Email address</label><input id="em" type="email" autocomplete="username" placeholder="you@example.com">
+      <label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password" placeholder="Enter your password">
+      <p id="e1" class="err"></p>
+      <button id="login" class="primary full">Sign in <span>→</span></button>
+      <div class="auth-divider"><span>New to JobPilot?</span></div>
+      <button id="register" class="secondary full">Create your account</button>
+      <button id="demo" class="demo-login hide">Use demo account</button>
+      <p class="fineprint">By continuing, you agree to use JobPilot responsibly and review applications before they are submitted.</p>
+    </div>
+  </div>
+</section>
+
+<section id="p2" class="setup-shell hide">
+  <header class="setup-header"><div class="brand"><span class="brand-mark">J</span><span>jobpilot</span></div><div class="setup-header-actions"><button id="backWorkspace" class="secondary">← Back to workspace</button><button id="logout1" class="text-button">Sign out</button></div></header>
+  <div class="setup-content">
+    <div class="setup-heading"><span class="eyebrow">LET'S PERSONALISE YOUR SEARCH</span><h1>Build your career profile</h1><p class="subtle">A few details help us find opportunities that feel like a better fit.</p></div>
+    <div class="setup-grid">
+      <div class="setup-main">
+        <div class="panel">
+          <div class="section-heading"><span class="step">01</span><div><h3>Job sources</h3><p>Choose the sources connected to your account.</p></div></div>
+          <p class="helper">Adzuna and Jooble use server API keys. LinkedIn, Naukri and Indeed require approved partner access. Never enter your personal site passwords here.</p>
+          <div id="portals"></div>
+        </div>
+        <div class="panel">
+          <div class="section-heading"><span class="step">02</span><div><h3>Your resume</h3><p>Upload or paste your experience so we can understand your strengths.</p></div></div>
+          <div class="drop"><div class="upload-icon">↑</div><div><b>Upload your resume</b><p>PDF, DOCX or TXT · You can also paste the text below</p><input id="rf" type="file" accept=".pdf,.docx,.txt,.md"></div></div>
+          <label for="rs">Resume text</label><textarea id="rs" placeholder="Paste your resume content here..."></textarea>
+          <div class="inline"><button id="ex" type="button" class="secondary">Extract skills</button><span id="xs" class="meta"></span></div><div id="xr"></div>
+        </div>
+        <div class="panel">
+          <div class="section-heading"><span class="step">03</span><div><h3>Job preferences</h3><p>Tell us what kind of opportunity you're looking for.</p></div></div>
+          <label for="sk">Your skills <small>Separate skills with commas</small></label><input id="sk" placeholder="Python, SQL, React, communication">
+          <label for="rl">Job titles <small>Roles you're interested in</small></label><input id="rl" placeholder="Data Analyst, Software Engineer">
+          <div class="form-row"><div><label for="co">Country</label><select id="co"></select></div><div><label for="lc">Preferred city</label><input id="lc" list="cities" placeholder="e.g. Hyderabad"><datalist id="cities"></datalist></div></div>
+          <label for="th">Auto-apply match threshold <span class="inline-hint">50–100</span></label><input id="th" type="number" min="50" max="100" value="75">
+          <label class="check"><input type="checkbox" id="aa"><span><b>Enable auto-apply</b><small>Only enable this if you understand and consent to applications being submitted in your name. Review your settings carefully.</small></span></label>
+          <p id="e2" class="err"></p><button id="save" class="primary">Save profile & find jobs <span>→</span></button>
+        </div>
+      </div>
+      <aside class="setup-aside"><div class="aside-card"><div class="aside-spark">✦</div><h3>A better search starts with you.</h3><p>Keep your profile clear and up to date. The more relevant information you share, the more useful your job matches can be.</p><div class="aside-stat"><b>01</b><span>Tell us what you do</span></div><div class="aside-stat"><b>02</b><span>Choose where you want to go</span></div><div class="aside-stat"><b>03</b><span>Explore matching roles</span></div></div></aside>
+    </div>
+  </div>
+</section>
+
+<section id="p3" class="app-shell hide">
+  <aside class="sidebar">
+    <a class="brand side-brand" href="#" aria-label="JobPilot home"><span class="brand-mark">J</span><span>jobpilot</span></a>
+    <div class="side-label">WORKSPACE</div>
+    <nav class="side-nav">
+      <button class="nav-item active" data-page="dashboard"><span class="nav-icon">▦</span>Overview</button>
+      <button class="nav-item" data-page="jobs"><span class="nav-icon">⌕</span>Find jobs</button>
+      <button class="nav-item" data-page="applications"><span class="nav-icon">▤</span>My applications</button>
+      <button class="nav-item" data-page="alerts"><span class="nav-icon">♧</span>Notifications <span id="navCnt" class="nav-count hide">0</span></button>
+    </nav>
+    <div class="side-label side-label-bottom">PREFERENCES</div>
+    <nav class="side-nav">
+      <button class="nav-item" id="edit"><span class="nav-icon">◎</span>My profile</button>
+    </nav>
+    <div class="sidebar-bottom"><div class="help-card"><div class="help-icon">✦</div><b>Keep moving forward</b><p>Your next opportunity could be one good match away.</p></div><button id="logout2" class="logout-button"><span>↪</span> Sign out</button></div>
+  </aside>
+
+  <main class="main-area">
+    <header class="app-topbar"><div class="mobile-brand brand"><span class="brand-mark">J</span><span>jobpilot</span></div><div class="breadcrumb"><span>Workspace</span><b>/</b><strong id="pageCrumb">Overview</strong></div><div class="top-actions"><span class="status-dot"></span><span class="top-status">Your search is active</span><button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch theme">☾ <span>Dark mode</span></button><button id="bell" class="secondary" title="Notifications">♧ <span id="cnt" class="hide">0</span></button><div class="profile-menu-wrap">
+        <button id="profileButton" class="profile-trigger" type="button" aria-expanded="false" aria-controls="profileMenu">
+          <span class="avatar" id="profileAvatar">JP</span><span class="profile-trigger-copy"><b id="profileName">My profile</b><small id="profileEmail">View account</small></span><span class="profile-chevron">⌄</span>
+        </button>
+        <div id="profileMenu" class="profile-menu hide">
+          <div class="profile-menu-head"><span class="avatar large" id="menuAvatar">JP</span><div><b id="menuName">My profile</b><small id="menuEmail">Account details</small></div></div>
+          <button type="button" data-profile-action="profile">◎ <span>My Profile & Resume</span></button>
+          <button type="button" data-profile-action="dashboard">▦ <span>Dashboard</span></button>
+          <button type="button" data-profile-action="jobs">⌕ <span>Find Jobs</span></button>
+          <button type="button" data-profile-action="applications">▤ <span>My Applications</span></button>
+          <button type="button" data-profile-action="logout" class="profile-signout">↪ <span>Sign out</span></button>
+        </div>
+      </div></div></header>
+    <div class="page-wrap">
+      <div id="page-dashboard" class="page-view">
+        <div class="page-heading"><div><span class="eyebrow">YOUR CAREER AT A GLANCE</span><h1>Good things are in motion.</h1><p class="subtle">Here's what's happening with your job search today.</p></div><button id="refresh" class="primary refresh-btn">↻ &nbsp; Refresh jobs</button></div>
+        <div class="welcome-banner"><div><span class="banner-kicker">YOUR NEXT OPPORTUNITY</span><h2>Find the role that<br>moves you forward.</h2><p>Explore fresh opportunities picked around your skills and goals.</p><button class="banner-button" data-go="jobs">Explore matching jobs <span>→</span></button></div><div class="banner-art"><div class="banner-ring ring-a"></div><div class="banner-ring ring-b"></div><div class="banner-star">✦</div><div class="banner-card"><span>YOUR MATCH</span><b>Great potential</b><small>One step at a time.</small></div></div></div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-top"><span>Matching jobs</span><span class="stat-icon violet">⌕</span></div><strong id="statJobs">—</strong><small>Opportunities in your feed</small></div>
+          <div class="stat-card"><div class="stat-top"><span>Applications</span><span class="stat-icon blue">▤</span></div><strong id="statApplied">—</strong><small>Jobs you've marked applied</small></div>
+          <div class="stat-card"><div class="stat-top"><span>Ready to apply</span><span class="stat-icon green">↗</span></div><strong id="statReady">—</strong><small>Continue on employer websites</small></div>
+          <div class="stat-card"><div class="stat-top"><span>Strong matches</span><span class="stat-icon amber">✦</span></div><strong id="statStrong">—</strong><small>ATS match score 75 or higher</small></div>
+        </div>
+        <div class="content-grid"><div class="panel recent-panel"><div class="panel-title"><div><h3>Recent opportunities</h3><p>Fresh roles from your job feed</p></div><button class="link-button" data-go="jobs">View all →</button></div><div id="recentJobs" class="recent-list"><p class="meta">Loading your opportunities...</p></div></div><div class="panel progress-panel"><div class="panel-title"><div><h3>Your job search</h3><p>A little progress every day</p></div></div><div class="progress-visual"><div class="progress-circle"><span>✦</span></div><b>Stay consistent</b><p>Check new matches, save roles that interest you, and keep your profile current.</p></div><button class="secondary full" data-go="applications">Track applications</button></div></div>
+      </div>
+
+      <div id="page-jobs" class="page-view hide">
+        <div class="page-heading"><div><span class="eyebrow">OPPORTUNITIES FOR YOU</span><h1>Find your next role.</h1><p class="subtle">Explore roles that align with your skills and preferences.</p></div><button id="refreshJobs" class="secondary">↻ Refresh</button></div>
+        <div id="addjob" class="panel hide"><details><summary><b>Add a sample job</b></summary><div class="form-row"><div><label for="jt">Job title</label><input id="jt" placeholder="Backend Developer"></div><div><label for="jc">Company</label><input id="jc" placeholder="Acme Corp"></div></div><div class="form-row"><div><label for="jl">City</label><input id="jl"></div><div><label for="js">Required skills</label><input id="js" placeholder="python, django, sql"></div></div><button id="aj" class="primary">Add job</button></details></div>
+        <div class="panel filters"><div class="filter-heading"><b>Filter opportunities</b><span>Refine your results</span></div><div class="filter-controls"><select id="fc" aria-label="Country"></select><select id="fs" aria-label="Source"><option value="">All portals</option></select><select id="fm" aria-label="Minimum score"><option value="0">Any ATS score</option><option value="50">50 and above</option><option value="75">75 and above</option></select></div></div>
+        <div class="results-heading"><p class="meta" id="sum"></p></div><div id="list" class="job-list"></div>
+      </div>
+
+      <div id="page-applications" class="page-view hide">
+        <div class="page-heading"><div><span class="eyebrow">KEEP EVERY NEXT STEP IN SIGHT</span><h1>My applications.</h1><p class="subtle">A clear view of the opportunities you're pursuing.</p></div></div>
+        <div class="application-summary"><div><span>Applied</span><b id="appApplied">0</b></div><div><span>Ready to apply</span><b id="appReady">0</b></div><div><span>To review</span><b id="appReview">0</b></div></div>
+        <div class="panel"><div class="panel-title"><div><h3>Application tracker</h3><p>Use the job actions to update your progress.</p></div></div><div id="applicationsList" class="application-list"><p class="meta">Loading applications...</p></div></div>
+      </div>
+
+      <div id="page-alerts" class="page-view hide">
+        <div class="page-heading"><div><span class="eyebrow">STAY IN THE LOOP</span><h1>Your notifications.</h1><p class="subtle">New opportunities and updates from your job search.</p></div></div>
+        <div id="np" class="panel notifications-panel"><p class="meta">Loading notifications...</p></div>
+      </div>
+    </div>
+  </main>
+</section>
+<div id="toast" class="toast hide"></div>
+<script src="config.js"></script><script src="app.js"></script>
+</body></html>

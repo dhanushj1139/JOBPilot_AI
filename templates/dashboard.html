@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · JobPilot{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div><p class="eyebrow">OVERVIEW</p><h1>Your job dashboard</h1><p class="subheading">Keep track of opportunities and move your job search forward.</p></div>
+  <a class="button primary" href="{{ url_for('add_job') }}">＋ Add new job</a>
+</section>
+<section class="stats">
+  <div class="stat-card"><div class="stat-top"><span>Total jobs</span><span class="stat-icon purple">▦</span></div><strong>{{ total }}</strong><small>All opportunities saved</small></div>
+  <div class="stat-card"><div class="stat-top"><span>Saved</span><span class="stat-icon blue">☆</span></div><strong>{{ saved }}</strong><small>Ready to apply</small></div>
+  <div class="stat-card"><div class="stat-top"><span>Applied</span><span class="stat-icon orange">↗</span></div><strong>{{ applied }}</strong><small>Applications submitted</small></div>
+  <div class="stat-card"><div class="stat-top"><span>Interviews</span><span class="stat-icon green">✓</span></div><strong>{{ interview }}</strong><small>Interview stage</small></div>
+</section>
+<section class="panel">
+  <div class="panel-heading"><div><h2>Job opportunities</h2><p>All jobs saved from your Add Job page.</p></div><span class="count">{{ jobs|length }} shown</span></div>
+  <form class="filters" method="get" action="{{ url_for('dashboard') }}">
+    <input type="search" name="q" placeholder="Search title, company, skills..." value="{{ q }}">
+    <select name="status">
+      <option value="">All statuses</option>
+      {% for s in ['Saved','Applied','Interview','Rejected','Offer'] %}<option value="{{ s }}" {% if selected_status == s %}selected{% endif %}>{{ s }}</option>{% endfor %}
+    </select>
+    <button class="button secondary" type="submit">Filter</button>
+    {% if q or selected_status %}<a class="clear-link" href="{{ url_for('dashboard') }}">Clear</a>{% endif %}
+  </form>
+  {% if jobs %}
+  <div class="job-list">
+    {% for job in jobs %}
+    <article class="job-row">
+      <div class="company-mark">{{ job.company[:1]|upper }}</div>
+      <div class="job-info">
+        <h3>{{ job.title }}</h3><div class="company-line">{{ job.company }}{% if job.location %} <span>·</span> {{ job.location }}{% endif %}</div>
+        <div class="chips">{% if job.job_type %}<span>{{ job.job_type }}</span>{% endif %}{% if job.experience %}<span>{{ job.experience }}</span>{% endif %}{% if job.salary %}<span>{{ job.salary }}</span>{% endif %}</div>
+        {% if job.skills %}<p class="skills-line">{{ job.skills }}</p>{% endif %}
+        {% if job.description %}<details><summary>View description</summary><p>{{ job.description }}</p></details>{% endif %}
+        <small class="date-line">Added {{ job.created_at }}</small>
+      </div>
+      <div class="job-actions">
+        <form method="post" action="{{ url_for('update_status', job_id=job.id) }}">
+          <select name="status" onchange="this.form.submit()" aria-label="Update application status">
+            {% for s in ['Saved','Applied','Interview','Rejected','Offer'] %}<option value="{{ s }}" {% if job.status == s %}selected{% endif %}>{{ s }}</option>{% endfor %}
+          </select>
+        </form>
+        {% if job.apply_url %}<a class="apply-link" href="{{ job.apply_url }}" target="_blank" rel="noopener">Open job ↗</a>{% endif %}
+        <form method="post" action="{{ url_for('delete_job', job_id=job.id) }}" onsubmit="return confirm('Delete this job?')"><button class="delete-link" type="submit">Delete</button></form>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state"><div class="empty-icon">▤</div><h3>No jobs found</h3><p>{% if q or selected_status %}Try changing your search or filter.{% else %}Start by adding your first job opportunity.{% endif %}</p><a class="button primary" href="{{ url_for('add_job') }}">＋ Add your first job</a></div>
+  {% endif %}
+</section>
+{% endblock %}

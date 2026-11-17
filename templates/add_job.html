@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Add Job · JobPilot{% endblock %}
+{% block breadcrumb %}Add a job{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div><p class="eyebrow">JOB ENTRY</p><h1>Add a new opportunity</h1><p class="subheading">Enter the details below. Your job will appear on the main dashboard after saving.</p></div>
+  <a class="button secondary" href="{{ url_for('dashboard') }}">← Back to dashboard</a>
+</section>
+<section class="form-panel">
+  <form method="post" class="job-form">
+    <div class="form-section-title"><span>01</span><div><h2>Basic information</h2><p>Tell us about the role and company.</p></div></div>
+    <div class="form-grid">
+      <label class="wide">Job title <b>*</b><input name="title" required placeholder="e.g. Junior Data Analyst" value="{{ form.get('title','') }}"></label>
+      <label>Company name <b>*</b><input name="company" required placeholder="e.g. Acme Technologies" value="{{ form.get('company','') }}"></label>
+      <label>Location<input name="location" placeholder="e.g. Hyderabad / Remote" value="{{ form.get('location','') }}"></label>
+      <label>Job type<select name="job_type"><option value="">Select job type</option>{% for x in ['Full-time','Part-time','Internship','Contract','Remote'] %}<option {% if form.get('job_type') == x %}selected{% endif %}>{{ x }}</option>{% endfor %}</select></label>
+      <label>Experience level<input name="experience" placeholder="e.g. Fresher / 0-1 years" value="{{ form.get('experience','') }}"></label>
+      <label>Salary / stipend<input name="salary" placeholder="e.g. ₹3-5 LPA" value="{{ form.get('salary','') }}"></label>
+      <label>Required skills<input name="skills" placeholder="Python, SQL, Excel, Power BI" value="{{ form.get('skills','') }}"></label>
+      <label>Application status<select name="status">{% for x in ['Saved','Applied','Interview','Rejected','Offer'] %}<option value="{{ x }}" {% if form.get('status','Saved') == x %}selected{% endif %}>{{ x }}</option>{% endfor %}</select></label>
+      <label class="wide">Job application URL<input type="url" name="apply_url" placeholder="https://company.com/careers/job-id" value="{{ form.get('apply_url','') }}"></label>
+      <label class="wide">Job description<textarea name="description" rows="5" placeholder="Paste the job description or important responsibilities...">{{ form.get('description','') }}</textarea></label>
+    </div>
+    <div class="form-footer"><p><b>*</b> Required fields</p><div><a class="cancel-link" href="{{ url_for('dashboard') }}">Cancel</a><button class="button primary" type="submit">Save job →</button></div></div>
+  </form>
+</section>
+{% endblock %}

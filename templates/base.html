@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}JobPilot{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="{{ url_for('dashboard') }}"><span class="brand-icon">J</span><span>JobPilot</span></a>
+      <div class="nav-label">WORKSPACE</div>
+      <a class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}" href="{{ url_for('dashboard') }}">▦ &nbsp; Dashboard</a>
+      <a class="nav-link {% if request.endpoint == 'add_job' %}active{% endif %}" href="{{ url_for('add_job') }}">＋ &nbsp; Add a job</a>
+      <div class="sidebar-bottom"><div class="avatar">JP</div><div><strong>JobPilot</strong><small>Personal job tracker</small></div></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><span>Workspace / {% block breadcrumb %}Dashboard{% endblock %}</span><span class="local-tag">● Local workspace</span></header>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}{% for category, message in messages %}<div class="alert {{ category }}">{{ message }}</div>{% endfor %}{% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+      <footer>JobPilot <span>·</span> Your job search, organized.</footer>
+    </main>
+  </div>
+</body>
+</html>
